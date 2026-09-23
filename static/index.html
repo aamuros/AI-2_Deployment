@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="Inspect FDM 3D print photos for cracking, layer shifting, stringing, and warping." />
+    <title>FDM / Vision — Defect Segmentation</title>
+    <link rel="preload" href="/static/fonts/ppmondwest.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <section class="hero" id="inspect" aria-labelledby="page-title">
+        <div class="hero-inner">
+          <div class="hero-heading">
+            <p class="eyebrow">FDM 3D PRINT INSPECTION</p>
+            <h1 id="page-title">Inspect every layer.</h1>
+            <p class="hero-subtitle">Upload a print photo to locate cracking, layer shifting, stringing, and warping.</p>
+          </div>
+
+          <form class="upload-panel" id="analyzeForm" novalidate>
+            <span class="upload-step">IMAGE INPUT</span>
+            <h2>Start with a print photo.</h2>
+
+            <div class="drop-zone" id="dropZone">
+              <img class="upload-icon" src="/static/icons/upload.png" alt="" />
+              <div class="upload-preview-wrap" id="uploadPreviewWrap" hidden>
+                <img class="upload-preview" id="uploadPreview" alt="Selected print preview" />
+                <button type="button" class="remove-file-button" id="removeFileButton" aria-label="Remove uploaded image">×</button>
+              </div>
+              <div class="drop-copy">
+                <strong id="fileName">Drop your image here</strong>
+                <span id="fileHint">JPG or PNG, up to 20 MB</span>
+              </div>
+              <input id="fileInput" name="file" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" hidden />
+              <button type="button" class="choose-button" id="chooseButton">Upload file</button>
+            </div>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="results" id="results" aria-labelledby="results-title" hidden>
+        <div class="section-heading">
+          <div><span class="section-index">ANALYSIS</span><h2 id="results-title">Inspection result</h2></div>
+          <div class="result-summary"><span id="resultCount">0</span><span>defects<br />found</span></div>
+        </div>
+        <div class="result-insights">
+          <div class="detection-block"><h3>Detected defects</h3><div id="detectionList" class="detection-list"></div></div>
+          <a id="downloadResult" class="download-link" download="fdm-segmentation.png"><span>Download</span><span class="download-icon" aria-hidden="true">↓</span></a>
+        </div>
+        <div class="image-comparison">
+          <figure><div class="image-frame"><img id="originalImage" alt="Original uploaded FDM print" /></div><figcaption>Input image <span>01 / ORIGINAL</span></figcaption></figure>
+          <figure><div class="image-frame"><img id="segmentedImage" alt="FDM print with segmented defects, boxes, and confidence labels" /></div><figcaption>Segmented image <span>02 / MODEL OUTPUT</span></figcaption></figure>
+        </div>
+      </section>
+
+      <section class="method" id="method" aria-labelledby="method-title">
+        <div class="method-intro"><span class="section-index">THE METHOD</span><h2 id="method-title">From photo to<br />print insight.</h2><p>A single image goes through the segmentation model. Each detected defect is marked on the output and listed with its confidence.</p></div>
+        <div class="method-detail">
+          <p class="detail-label">SUPPORTED DEFECTS</p>
+          <ol class="defect-types">
+            <li><span>01</span><strong>Cracking</strong><small>Gaps or splits in the printed surface</small></li>
+            <li><span>02</span><strong>Layer shifting</strong><small>Layers displaced from their intended position</small></li>
+            <li><span>03</span><strong>Stringing</strong><small>Thin strands of unwanted filament</small></li>
+            <li><span>04</span><strong>Warping</strong><small>Lifted or curled edges</small></li>
+          </ol>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer" id="team" aria-labelledby="team-title">
+      <div class="footer-top">
+        <div class="footer-lead">
+          <p class="footer-kicker">AI2 FINAL PROJECT</p>
+          <h2 id="team-title">People behind<br />the layers.</h2>
+          <p class="footer-submitted">Submitted to: Dr. Lysa Comia</p>
+        </div>
+        <div class="footer-team">
+          <p class="footer-kicker">FILAMEANT TEAM</p>
+          <ol class="footer-members">
+            <li>Muros, Adrian</li>
+            <li>Sanchez, Jamin Ariane</li>
+            <li>Santos, Trent Joaqin</li>
+            <li>Taroma, Hideki Reiven</li>
+          </ol>
+        </div>
+      </div>
+      <div class="footer-wordmark" aria-hidden="true">Filameant</div>
+    </footer>
+    <div class="global-drop-overlay" id="globalDropOverlay" aria-hidden="true">
+      <div class="global-drop-frame">
+        <div class="global-drop-prompt">
+          <div class="drop-file-icons" aria-hidden="true"><img src="/static/icons/picture.png" alt="" /><img src="/static/icons/attachment.png" alt="" /><img src="/static/icons/upload.png" alt="" /></div>
+          <p class="global-drop-title">Drop your print image.</p>
+          <p class="global-drop-hint">JPG or PNG <span aria-hidden="true">·</span> One image <span aria-hidden="true">·</span> 20 MB max</p>
+          <p class="global-drop-bottom">RELEASE ANYWHERE TO SELECT</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

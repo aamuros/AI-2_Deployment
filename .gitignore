@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.py[cod]
+.playwright-cli/
+.DS_Store
+17330fd087386262-s.p.woff2
