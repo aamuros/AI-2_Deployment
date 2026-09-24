@@ -152,7 +152,7 @@ img { max-width: 100%; }
 .defect-types li span { color: #666; font-size: 10px; }
 .defect-types li strong { font: 400 25px/1 "PP Mondwest", Georgia, serif; }
 .defect-types li small { color: #666; font-size: 12px; line-height: 1.5; }
-.site-footer { position: fixed; z-index: 0; inset: auto 0 0; height: var(--footer-reveal); display: flex; flex-direction: column; overflow: hidden; padding: clamp(44px, 5vw, 70px) 0 0; color: #fff; background: #111; }
+.site-footer { position: fixed; z-index: 0; inset: auto 0 0; height: var(--footer-reveal); display: flex; flex-direction: column; overflow: hidden; pointer-events: none; padding: clamp(44px, 5vw, 70px) 0 0; color: #fff; background: #111; }
 .footer-top { flex: 1; width: min(100% - 88px, 1360px); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) max-content; align-items: start; gap: clamp(46px, 9vw, 150px); }
 .footer-kicker { margin: 0; color: #999; font-size: 10px; font-weight: 700; letter-spacing: .16em; }
 .footer-lead h2 { margin: 18px 0 0; font: 400 clamp(45px, 4.7vw, 68px)/.96 "PP Mondwest", Georgia, serif; }
